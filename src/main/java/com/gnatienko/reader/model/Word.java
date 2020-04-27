@@ -16,7 +16,7 @@ public class Word {
     private String translation;
     private Long id;
 
-    public Word(String origin, String translation, Long id) {
+    public Word(String origin, String translation, Long id) { // конструктор класса
         this.origin = origin;
         this.translation = translation;
         this.id = id;

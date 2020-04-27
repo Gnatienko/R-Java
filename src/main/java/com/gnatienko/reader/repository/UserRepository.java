@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface UserRepository extends PagingAndSortingRepository<UserEntity, Long> {
 
-    List<UserEntity> findAll();
+    List<UserEntity> findAll(); //Возвращает всех юзеров
 }

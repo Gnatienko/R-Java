@@ -22,7 +22,7 @@ public class BookNamesService {
                 .orElseThrow(() -> new RuntimeException("Book not found"));
     }
 
-    public List<BookNamesEntity> findByUser_id(Long userId) {
+    public List<BookNamesEntity> findByUserId(Long userId) {
         return repository.findByUserId(userId);
     }
 

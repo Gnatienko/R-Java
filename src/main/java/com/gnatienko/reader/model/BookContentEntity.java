@@ -19,8 +19,8 @@ public class BookContentEntity {
     @Column(name = "content")
     private String content;
 
-    @Column(name = "pageN")
-    private Long pageN;
+    @Column(name = "pageNumber")
+    private Long pageNumber;
 
     public Long getId() {
         return id;
@@ -47,11 +47,11 @@ public class BookContentEntity {
     }
 
     public Long getPageN() {
-        return pageN;
+        return pageNumber;
     }
 
     public void setPageN(Long pageN) {
-        this.pageN = pageN;
+        this.pageNumber = pageN;
     }
 
     @Override
@@ -62,11 +62,11 @@ public class BookContentEntity {
         return Objects.equals(id, that.id) &&
                 Objects.equals(bookId, that.bookId) &&
                 Objects.equals(content, that.content) &&
-                Objects.equals(pageN, that.pageN);
+                Objects.equals(pageNumber, that.pageNumber);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, bookId, content, pageN);
+        return Objects.hash(id, bookId, content, pageNumber);
     }
 }

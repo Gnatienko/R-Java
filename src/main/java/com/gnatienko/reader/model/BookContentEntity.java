@@ -17,7 +17,7 @@ public class BookContentEntity {
     private Long bookId;
 
     @Column(name = "content")
-    private List<Word> content;
+    private String content;
 
     @Column(name = "pageN")
     private Long pageN;
@@ -38,11 +38,11 @@ public class BookContentEntity {
         this.bookId = bookId;
     }
 
-    public List<Word> getContent() {
+    public String getContent() {
         return content;
     }
 
-    public void setContent(List<Word> content) {
+    public void setContent(String content) {
         this.content = content;
     }
 

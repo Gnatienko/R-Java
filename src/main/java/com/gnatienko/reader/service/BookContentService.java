@@ -23,6 +23,6 @@ public class BookContentService {
     }
 
     public List<BookContentEntity> findByBookId(Long bookId){
-        return repository.findByBookId(bookId );
+        return repository.findByBookId(bookId);
     }
 }

@@ -22,7 +22,7 @@ public class BookContentService {
                 .orElseThrow(() -> new RuntimeException("Content not found"));
     }
 
-    public List<BookContentEntity> findByBookId(Long bookId){
-        return repository.findByBookId(bookId);
+    public List<BookContentEntity> findByBookIdAndPageNumber(Long bookId, Long pageNumber){
+        return repository.findByBookIdAndPageNumber(bookId, pageNumber);
     }
 }

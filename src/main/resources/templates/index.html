@@ -10,7 +10,8 @@
 <tr th:each="user: ${users}">
     <td th:text="${user.id}" />
     <td th:text="${user.name}" />
-</tr>
+    <td th:text="${user.login}" />
+</tr> # //tr строка td колонка
 <h2>Page 1</h2>
 <tr th:each="word: ${page}">
     <div class="word">

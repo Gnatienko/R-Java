@@ -13,4 +13,5 @@ public interface InternalDictionary extends PagingAndSortingRepository<InternalD
     List<InternalDictionaryEntity> findAll();
     Optional<InternalDictionaryEntity> findByEnglish(String english);
 
+
 }

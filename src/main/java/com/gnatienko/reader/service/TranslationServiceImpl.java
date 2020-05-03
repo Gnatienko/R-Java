@@ -26,11 +26,13 @@ public class TranslationServiceImpl {
         return list;
     }
 
+
+
     private List<String> translate(List<String> wordsWithoutPunctuations) {
         List<String> translationList = new ArrayList<>();
         for (String word : wordsWithoutPunctuations) {
             if (!StringUtils.isEmpty(word)) {
-                String russianTranslation = dictionaryService.getRussianTranslation(word.toLowerCase());
+                String russianTranslation = dictionaryService.getRussianTranslation( word.toLowerCase());
                 translationList.add(russianTranslation);
             } else {
                 translationList.add(word);

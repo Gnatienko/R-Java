@@ -16,6 +16,14 @@ public class InternalDictionaryEntity {
     @Column(name = "russian")
     private String russian;
 
+    public InternalDictionaryEntity() {
+    }
+
+    public InternalDictionaryEntity(String english, String russian) {
+        this.english = english;
+        this.russian = russian;
+    }
+
     public Long getId() {
         return id;
     }

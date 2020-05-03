@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DictionaryService {
@@ -22,4 +23,12 @@ public class DictionaryService {
         return repository.findAll();
     }
 
+    public String getRussianTranslation(String english) {
+        Optional<InternalDictionaryEntity> byEnglish = repository.findByEnglish(english);
+        if (byEnglish.isPresent()) {
+            return byEnglish.get().getRussian();
+        } else {
+            return "#";
+        }
+    }
 }

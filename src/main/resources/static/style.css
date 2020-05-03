@@ -6,11 +6,14 @@ h1 {
     display: inline-block;
 }
 
-.original{}
+.original{
+    font-size: 200%;
+}
 
 .translation{
+    width: 20px;
     display: block;
     font-size: 70%;
-    color: #d4d4d4;
-
+    color: #b9b9b9;
+    background: #fff;
 }

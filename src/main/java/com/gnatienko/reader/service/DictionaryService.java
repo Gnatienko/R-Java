@@ -6,13 +6,12 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class DictionaryService {
@@ -36,11 +35,13 @@ public class DictionaryService {
         return repository.findAll();
     }
 
+
+
     public String getRussianTranslation(String english) {
         english = removeSpecialCharacters(english);
         Optional<InternalDictionaryEntity> byEnglish = repository.findByEnglish(english);
         if (byEnglish.isPresent()) {
-            return byEnglish.get().getRussian();
+            return getMap().get(english);//byEnglish.get().getRussian();
         } else {
             try {
                 String apiURL = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=ru&dt=t&q=";
@@ -49,11 +50,22 @@ public class DictionaryService {
                 String russian = (String) arr.get(0);
                 var entity = new InternalDictionaryEntity(english, russian);
                 repository.save(entity);
-                return russian;
+                return "+"+russian;
             } catch (Exception e) {
                 log.error(e.getMessage(), e);
                 return "#";
             }
         }
+    }
+
+
+    @Cacheable("pohui")
+    private Map<String, String> getMap() {
+        Map<String, String> hashMap = new HashMap<String, String>();
+
+        for(long i=0;i< repository.findAll().size() ;i++) {
+            hashMap.put(repository.findById(i).get().getEnglish(), repository.findById(i).get().getRussian()); //???
+        }
+        return hashMap;
     }
 }

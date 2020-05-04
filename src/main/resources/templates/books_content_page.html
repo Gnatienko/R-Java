@@ -6,16 +6,11 @@
     <link href="style.css" rel="stylesheet" />
 </head>
 <body>
-<h1>Hello, Alexey!</h1>
-<tr th:each="user: ${users}">
-    <td th:text="${user.id}" />
-    <td th:text="${user.name}" />
-    <td th:text="${user.login}" />
-</tr> # //tr строка td колонка
+
 <h2>Page 1</h2>
-<tr th:each="word: ${page}">
+<tr th:each="word: ${words}">
     <div class="word">
-        <span class="translation" id="${word.id}"><td th:text="${word.translation}"/></span>
+        <span class="translation" id="${word.id}">...<td th:text="${word.translation}"/></span>
         <span class="original"><td th:text="${word.origin}"/></span>
     </div>
 </tr>

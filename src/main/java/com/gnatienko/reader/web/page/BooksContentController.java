@@ -42,6 +42,7 @@ public class BooksContentController {
 
    }
 
+
      @GetMapping ("/{book_id}/{page_number}")
     public String findBook(Model model, @PathVariable(name = "book_id") Long bookId, @PathVariable(name = "page_number") Long pageNumber ) {
 

@@ -1,3 +1,4 @@
+/*
 package com.gnatienko.reader.web.page;
 
 import com.gnatienko.reader.model.BookContentEntity;
@@ -22,7 +23,7 @@ public class BookControllerTest2 {
     private TranslationServiceImpl translationService;
 
 
-    @GetMapping  ("/12")//("/{book_id}/{page_number}")
+    @GetMapping  ("/12a")//("/{book_id}/{page_number}")
     public String findBook(Model model) {
         List<Word> word = translationService.getTranslationPairs( bookContentService.findByBookIdAndPageNumber(1L, 1L).get(0).getContent()); //1 лонг
         model.addAttribute( "words", word); //books1 - ключ, books - содержание по ключу
@@ -31,3 +32,4 @@ public class BookControllerTest2 {
     }
 
 }
+*/

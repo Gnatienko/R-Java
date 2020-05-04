@@ -1,3 +1,4 @@
+/*
 package com.gnatienko.reader.web.page;
 
 import com.gnatienko.reader.model.BookContentEntity;
@@ -29,3 +30,4 @@ public class BookControllerTest {
     }
 
 }
+*/

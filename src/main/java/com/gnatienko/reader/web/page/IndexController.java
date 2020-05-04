@@ -1,7 +1,8 @@
 /*
  * Copyright (c) 2020 Javatar LLC
  * All rights reserved.
- */
+ *//*
+
 package com.gnatienko.reader.web.page;
 
 import com.gnatienko.reader.model.UserEntity;
@@ -17,10 +18,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+*/
 /**
  * @author Svitlana Onyshchenko / Javatar LLC
  * @version 26-04-2020
- */
+ *//*
+
 @Controller
 public class IndexController {
 
@@ -51,3 +54,4 @@ public class IndexController {
         return "index";
     }
 }
+*/

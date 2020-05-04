@@ -1,3 +1,4 @@
+/*
 package com.gnatienko.reader.web;
 
 import com.gnatienko.reader.model.BookContentEntity;
@@ -24,3 +25,4 @@ public class BookController {
         return "page_book_content"; //название страницы.хтмл
     }
 }
+*/

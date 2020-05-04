@@ -24,7 +24,7 @@ public class DictionaryService {
     private RestTemplate restTemplate = new RestTemplate();
 
     private String removeSpecialCharacters(String word) {
-        return word == null ? StringUtils.EMPTY : word.replaceAll( "[^a-zA-Z0-9]", "");
+        return word == null ? StringUtils.EMPTY : word.replaceAll( "[^a-zA-Z]", "");
     }
 
     public InternalDictionaryEntity save(InternalDictionaryEntity entity) {
@@ -42,6 +42,7 @@ public class DictionaryService {
         Optional<InternalDictionaryEntity> byEnglish = repository.findByEnglish(english);
         if (byEnglish.isPresent()) {
             return getMap().get(english);//byEnglish.get().getRussian();
+
         } else {
             try {
                 String apiURL = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=ru&dt=t&q=";
@@ -63,7 +64,7 @@ public class DictionaryService {
     private Map<String, String> getMap() {
         Map<String, String> hashMap = new HashMap<String, String>();
 
-        for(long i=0;i< repository.findAll().size() ;i++) {
+        for(long i=1;i< repository.findAll().size() ;i++) {
             hashMap.put(repository.findById(i).get().getEnglish(), repository.findById(i).get().getRussian()); //???
         }
         return hashMap;

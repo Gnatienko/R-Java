@@ -28,9 +28,6 @@ public class BookControllerTest2 {
         model.addAttribute( "words", word); //books1 - ключ, books - содержание по ключу
         return "index_test"; //название страницы.хтмл
 
-
-
-
     }
 
 }

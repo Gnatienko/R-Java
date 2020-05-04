@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -6,13 +8,18 @@
     <link href="style.css" rel="stylesheet" />
 </head>
 <body>
-<h1>${message}</h1>
+<h1>Books of <span th:text="${userName}" /></h1>
 
-<tr th:each="book: ${books1}">
-    <td th:text="${book.content}" />
-</tr>
+<table>
+    <tr th:each="userBookName: ${userBookNames}">
+        <td th:text="${userBookName.id}" />
+        <td th:text="${userBookName.name}" />
 
-<h2>Page 1</h2>
+    </tr>
+</table>
+<h2>_____</h2>
+
+
 
 </body>
 </html>

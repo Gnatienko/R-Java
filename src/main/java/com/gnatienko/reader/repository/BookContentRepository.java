@@ -7,6 +7,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import java.util.List;
 
 public interface BookContentRepository extends PagingAndSortingRepository<BookContentEntity,Long> {
-    List<BookContentEntity> findByBookIdAndPageNumber (Long bookId, Long pageNumber);
+    BookContentEntity findByBookIdAndPageNumber (Long bookId, Long pageNumber);
 
 }

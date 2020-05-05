@@ -1,6 +1,8 @@
 package com.gnatienko.reader.service;
 
 import com.gnatienko.reader.model.Word;
+import com.gnatienko.reader.repository.InternalDictionary;
+import com.gnatienko.reader.repository.LearnedWordsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -14,6 +16,10 @@ public class TranslationServiceImpl {
 
     @Autowired
     private DictionaryService dictionaryService;
+
+    @Autowired
+    private LearnedWordsService learnedWordsService;
+
 
     private List<String> removeSpecialCharacters(List<String> words) {
         List<String> list = new ArrayList<>();
@@ -31,11 +37,11 @@ public class TranslationServiceImpl {
     private List<String> translate(List<String> wordsWithoutPunctuations) {
         List<String> translationList = new ArrayList<>();
         for (String word : wordsWithoutPunctuations) {
-            if (!StringUtils.isEmpty(word)) {
+            if ((!StringUtils.isEmpty(word)) & (learnedWordsService.isLearned(word))) { //
                 String russianTranslation = dictionaryService.getRussianTranslation( word.toLowerCase());
                 translationList.add(russianTranslation);
             } else {
-                translationList.add(word);
+                translationList.add("");
             }
         }
         return translationList;

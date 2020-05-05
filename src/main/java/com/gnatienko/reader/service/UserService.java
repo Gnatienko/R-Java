@@ -24,4 +24,8 @@ public class UserService {
     public List<UserEntity> findAll() {
         return repository.findAll();
     }
+
+    public Long userId (){
+        return 1L;
+    }
 }

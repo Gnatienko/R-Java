@@ -12,8 +12,6 @@ import java.util.Map;
 @Component
 public class DictionaryCache {
 
-    Long userId = 1L ;
-
     @Autowired
     private InternalDictionary repository;
     @Autowired

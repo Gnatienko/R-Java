@@ -17,7 +17,6 @@ import java.util.*;
 
 @Service
 public class DictionaryService {
-    Long userId = 1L ;
 
     private static final Logger log = LoggerFactory.getLogger(DictionaryService.class);
 
@@ -25,8 +24,8 @@ public class DictionaryService {
     private InternalDictionary repository;
     @Autowired
     private DictionaryCache dictionaryCache;
-    @Autowired
-    private LearnedWordsRepository learnedWordsRepository;
+
+
 
 
     private RestTemplate restTemplate = new RestTemplate();
@@ -49,9 +48,8 @@ public class DictionaryService {
     public String getRussianTranslation(String english) {
         english = removeSpecialCharacters(english);
         Optional<InternalDictionaryEntity> byEnglish = repository.findByEnglish(english);
-        Optional<LearnedWordEntity> learned = learnedWordsRepository.findByUserIdAndWordId(userId, repository.findByEnglish(english).get().getId());
 
-        if (!learned.isPresent()) {
+
             if (byEnglish.isPresent()) { // to do. add extra condition
                 return dictionaryCache.getMap().get(english);//byEnglish.get().getRussian();
 
@@ -70,9 +68,7 @@ public class DictionaryService {
                 }
 
             }
-        } else {
-            return "_";
-        }
+
 
 
     }

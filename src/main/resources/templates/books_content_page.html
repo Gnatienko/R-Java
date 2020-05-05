@@ -10,7 +10,7 @@
 <h2>Page 1</h2>
 <tr th:each="word: ${words}">
     <div class="word">
-        <span class="translation" id="${word.id}">...<td th:text="${word.translation}"/></span>
+        <span class="translation" id="${word.id}"><td th:text="${word.translation}"/></span>
         <span class="original"><td th:text="${word.origin}"/></span>
     </div>
 </tr>

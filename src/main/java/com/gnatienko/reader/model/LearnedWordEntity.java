@@ -5,7 +5,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "learned_words")
-public class LearnedWordsEntity {
+public class LearnedWordEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //Creating new IDs
     private Long id;
@@ -44,7 +44,7 @@ public class LearnedWordsEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        LearnedWordsEntity that = (LearnedWordsEntity) o;
+        LearnedWordEntity that = (LearnedWordEntity) o;
         return Objects.equals(id, that.id) &&
                 Objects.equals(userId, that.userId) &&
                 Objects.equals(wordId, that.wordId);

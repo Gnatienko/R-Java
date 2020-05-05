@@ -18,8 +18,11 @@ public class DictionaryService {
 
     private static final Logger log = LoggerFactory.getLogger(DictionaryService.class);
 
-    @Autowired //депенденси инжекшн анотация
+    @Autowired
     private InternalDictionary repository;
+    @Autowired
+    private DictionaryCache dictionaryCache;
+
 
     private RestTemplate restTemplate = new RestTemplate();
 
@@ -37,11 +40,12 @@ public class DictionaryService {
 
 
 
+
     public String getRussianTranslation(String english) {
         english = removeSpecialCharacters(english);
         Optional<InternalDictionaryEntity> byEnglish = repository.findByEnglish(english);
         if (byEnglish.isPresent()) {
-            return getMap().get(english);//byEnglish.get().getRussian();
+            return dictionaryCache.getMap().get(english);//byEnglish.get().getRussian();
 
         } else {
             try {
@@ -60,13 +64,5 @@ public class DictionaryService {
     }
 
 
-    @Cacheable("pohui")
-    private Map<String, String> getMap() {
-        Map<String, String> hashMap = new HashMap<String, String>();
 
-        for(long i=1;i< repository.findAll().size() ;i++) {
-            hashMap.put(repository.findById(i).get().getEnglish(), repository.findById(i).get().getRussian()); //???
-        }
-        return hashMap;
-    }
 }

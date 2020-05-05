@@ -48,7 +48,7 @@ public class BooksContentController {
 
         List<Word> word = translationService.getTranslationPairs( bookContentService.findByBookIdAndPageNumber(bookId, pageNumber).get(0).getContent()); //1 лонг
         model.addAttribute( "words", word); //books1 - ключ, books - содержание по ключу
-        return "index_test" ;//"index_test"; //название страницы.хтмл
+        return "books_content_page" ;//"index_test"; //название страницы.хтмл
     }
 
 }

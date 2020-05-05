@@ -17,7 +17,7 @@ import java.util.*;
 
 @Service
 public class DictionaryService {
-    Long userId = 2L ;
+    Long userId = 1L ;
 
     private static final Logger log = LoggerFactory.getLogger(DictionaryService.class);
 

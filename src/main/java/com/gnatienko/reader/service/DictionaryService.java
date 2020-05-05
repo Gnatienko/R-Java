@@ -27,7 +27,7 @@ public class DictionaryService {
     private RestTemplate restTemplate = new RestTemplate();
 
     private String removeSpecialCharacters(String word) {
-        return word == null ? StringUtils.EMPTY : word.replaceAll( "[^a-zA-Z]", "");
+        return word == null ? StringUtils.EMPTY : word.replaceAll( "[^a-zA-Z'’]", "");
     }
 
     public InternalDictionaryEntity save(InternalDictionaryEntity entity) {
@@ -44,7 +44,7 @@ public class DictionaryService {
     public String getRussianTranslation(String english) {
         english = removeSpecialCharacters(english);
         Optional<InternalDictionaryEntity> byEnglish = repository.findByEnglish(english);
-        if (byEnglish.isPresent()) {
+        if (byEnglish.isPresent() ) {
             return dictionaryCache.getMap().get(english);//byEnglish.get().getRussian();
 
         } else {

@@ -24,5 +24,6 @@ public class BookContentService {
 
     public List<BookContentEntity> findByBookIdAndPageNumber(Long bookId, Long pageNumber){
         return repository.findByBookIdAndPageNumber(bookId, pageNumber);
+
     }
 }

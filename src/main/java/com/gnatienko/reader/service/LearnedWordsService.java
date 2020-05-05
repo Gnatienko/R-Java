@@ -1,6 +1,7 @@
 package com.gnatienko.reader.service;
 
 
+import com.gnatienko.reader.model.InternalDictionaryEntity;
 import com.gnatienko.reader.model.LearnedWordEntity;
 import com.gnatienko.reader.repository.InternalDictionary;
 import com.gnatienko.reader.repository.LearnedWordsRepository;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.security.PublicKey;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LearnedWordsService {
@@ -33,8 +35,9 @@ public class LearnedWordsService {
     }
 
     public Boolean isLearned(String word){
-        if (internalDictionary.findByEnglish(word).isPresent()){
-            return repository.findByUserIdAndWordId(userService.userId(), (internalDictionary.findByEnglish(word).get().getId())).isPresent();
+        Optional<InternalDictionaryEntity> byEnglish = internalDictionary.findByEnglish(word);
+        if (byEnglish.isPresent()){
+            return repository.findByUserIdAndWordId(userService.userId(), (byEnglish.get().getId())).isPresent();
         } else {
             return false;
         }

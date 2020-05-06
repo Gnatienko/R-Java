@@ -30,14 +30,10 @@ public class LearnedWordsService {
             repository.delete(repository.findByUserIdAndWordId(userService.userId(),internalDictionary.findByEnglish(learnedWord).get().getId()).get());
             return "Word "+learnedWord+" is deleted";
         } else {
-            return "Word is learned already";
+            return "Word is not learned";
         }
     }
-        
-        
-        
-        
-        
+
     public String save(String learnedWord) {
 
         Long id = internalDictionary.findByEnglish(learnedWord).get().getId();

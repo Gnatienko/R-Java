@@ -1,4 +1,3 @@
-/*
 package com.gnatienko.reader.web.page;
 
 import com.gnatienko.reader.model.LearnedWordEntity;
@@ -26,4 +25,3 @@ public class AddLearnedWordController {
         return "add_learned_word_page" ;
     }
 }
-*/

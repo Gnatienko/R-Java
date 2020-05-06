@@ -37,7 +37,7 @@ public class TranslationServiceImpl {
     private List<String> translate(List<String> wordsWithoutPunctuations) {
         List<String> translationList = new ArrayList<>();
         for (String word : wordsWithoutPunctuations) {
-            if ((!StringUtils.isEmpty(word)) & (learnedWordsService.isLearned(word))) { //
+            if ((!StringUtils.isEmpty(word)) & !(learnedWordsService.isLearned(word))) { //
                 String russianTranslation = dictionaryService.getRussianTranslation( word.toLowerCase());
                 translationList.add(russianTranslation);
             } else {

@@ -25,7 +25,7 @@ public class LearnedWordsService {
 
 
 
-/*    public String save(String learnedWord) {
+    public String save(String learnedWord) {
 
 
         Long id = internalDictionary.findByEnglish(learnedWord).get().getId();
@@ -43,7 +43,7 @@ public class LearnedWordsService {
 
 
 
-    }*/
+    }
 
     public LearnedWordEntity get(Long id) {
         return repository.findById(id)
@@ -54,6 +54,7 @@ public class LearnedWordsService {
     }
 
     public Boolean isLearned(String word){
+        word = word.toLowerCase();
         Optional<InternalDictionaryEntity> byEnglish = internalDictionary.findByEnglish(word);
         if (byEnglish.isPresent()){
             return repository.findByUserIdAndWordId(userService.userId(), (byEnglish.get().getId())).isPresent();

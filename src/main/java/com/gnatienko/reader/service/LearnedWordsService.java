@@ -20,11 +20,30 @@ public class LearnedWordsService {
     private InternalDictionary internalDictionary;
     @Autowired
     private UserService userService;
+    @Autowired
+    DictionaryService dictionaryService;
 
 
-    public LearnedWordEntity save(LearnedWordEntity entity) {
-        return repository.save(entity);
-    }
+
+/*    public String save(String learnedWord) {
+
+
+        Long id = internalDictionary.findByEnglish(learnedWord).get().getId();
+        if (!isLearned(learnedWord)){
+            LearnedWordEntity learnedWordEntity = new LearnedWordEntity();
+            dictionaryService.getRussianTranslation(learnedWord); //добавляем слово в словарь, так как его может не быть
+            learnedWordEntity.setUserId(userService.userId());
+            learnedWordEntity.setWordId(id);
+            repository.save(learnedWordEntity);
+            return "Word "+learnedWord+" is added";
+
+        }else {
+            return "Word is learned already";
+        }
+
+
+
+    }*/
 
     public LearnedWordEntity get(Long id) {
         return repository.findById(id)

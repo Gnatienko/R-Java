@@ -9,5 +9,6 @@ import java.util.List;
 public interface BookNamesRepository extends PagingAndSortingRepository<BookNamesEntity,Long> {
     List<BookNamesEntity> findAll();
     List<BookNamesEntity> findByUserId(Long userId);
+    BookNamesEntity findByIdAndUserId(Long Id, Long userId);
 
 }

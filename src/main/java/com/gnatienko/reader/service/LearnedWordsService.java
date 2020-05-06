@@ -24,9 +24,21 @@ public class LearnedWordsService {
     DictionaryService dictionaryService;
 
 
-
+    public String delete(String learnedWord){
+        Long id = internalDictionary.findByEnglish(learnedWord).get().getId();
+        if (isLearned(learnedWord)){
+            repository.delete(repository.findByUserIdAndWordId(userService.userId(),internalDictionary.findByEnglish(learnedWord).get().getId()).get());
+            return "Word "+learnedWord+" is deleted";
+        } else {
+            return "Word is learned already";
+        }
+    }
+        
+        
+        
+        
+        
     public String save(String learnedWord) {
-
 
         Long id = internalDictionary.findByEnglish(learnedWord).get().getId();
         if (!isLearned(learnedWord)){
@@ -51,10 +63,10 @@ public class LearnedWordsService {
     }
     public List<LearnedWordEntity> findByUserId(Long userId) {
         return repository.findByUserId(userId);
-    }
+    }//
 
     public Boolean isLearned(String word){
-        word = word.toLowerCase();
+        word = word.toLowerCase().replaceAll( "[^a-zA-Z'’]", "");
         Optional<InternalDictionaryEntity> byEnglish = internalDictionary.findByEnglish(word);
         if (byEnglish.isPresent()){
             return repository.findByUserIdAndWordId(userService.userId(), (byEnglish.get().getId())).isPresent();

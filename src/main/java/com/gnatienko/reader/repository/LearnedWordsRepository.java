@@ -11,4 +11,5 @@ public interface LearnedWordsRepository extends PagingAndSortingRepository<Learn
     List<LearnedWordEntity> findByUserId (Long userId);
     Optional<LearnedWordEntity> findByUserIdAndWordId(Long userId, Long wordId);
     List<LearnedWordEntity> findAll();
+
 }

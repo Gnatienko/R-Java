@@ -21,11 +21,11 @@ public class TranslationServiceImpl {
     private LearnedWordsService learnedWordsService;
 
 
-    private List<String> removeSpecialCharacters(List<String> words) {
+    public List<String> removeSpecialCharacters(List<String> words) {
         List<String> list = new ArrayList<>();
         if(words == null){ return new ArrayList<>();}
         for (String word : words) {
-            String wordWithoutPunctuation = StringUtils.replace(word, "[^a-zA-Z0-9]", "");
+            String wordWithoutPunctuation = StringUtils.replace(word, "[^a-zA-Z0-9]'’", "");
             list.add(wordWithoutPunctuation);
         }
 

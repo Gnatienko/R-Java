@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<h2>Page 1</h2>
+<h1><span ><td th:text="${header}"/></span></h1>
 <tr th:each="word: ${words}">
     <div class="word">
         <span class="translation" id="${word.id}"><td th:text="${word.translation}"/></span>

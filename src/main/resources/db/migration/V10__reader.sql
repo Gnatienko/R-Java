@@ -1,0 +1,2 @@
+ALTER TABLE reader_user
+ALTER COLUMN password TYPE VARCHAR(255);

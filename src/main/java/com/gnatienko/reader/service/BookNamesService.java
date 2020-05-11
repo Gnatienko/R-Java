@@ -26,5 +26,9 @@ public class BookNamesService {
         return repository.findByUserId(userId);
     }
 
+    public BookNamesEntity findByIdAndUserId (Long Id, Long UserId) {
+        return repository.findByIdAndUserId(Id, UserId);
+    }
+
 
 }

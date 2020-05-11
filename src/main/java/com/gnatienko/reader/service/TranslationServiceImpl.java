@@ -21,11 +21,11 @@ public class TranslationServiceImpl {
     private LearnedWordsService learnedWordsService;
 
 
-    private List<String> removeSpecialCharacters(List<String> words) {
+    public List<String> removeSpecialCharacters(List<String> words) {
         List<String> list = new ArrayList<>();
         if(words == null){ return new ArrayList<>();}
         for (String word : words) {
-            String wordWithoutPunctuation = StringUtils.replace(word, "[^a-zA-Z0-9]", "");
+            String wordWithoutPunctuation = StringUtils.replace(word, "[^a-zA-Z0-9]'’", "");
             list.add(wordWithoutPunctuation);
         }
 
@@ -37,7 +37,7 @@ public class TranslationServiceImpl {
     private List<String> translate(List<String> wordsWithoutPunctuations) {
         List<String> translationList = new ArrayList<>();
         for (String word : wordsWithoutPunctuations) {
-            if ((!StringUtils.isEmpty(word)) & (learnedWordsService.isLearned(word))) { //
+            if ((!StringUtils.isEmpty(word)) & !(learnedWordsService.isLearned(word))) { //
                 String russianTranslation = dictionaryService.getRussianTranslation( word.toLowerCase());
                 translationList.add(russianTranslation);
             } else {

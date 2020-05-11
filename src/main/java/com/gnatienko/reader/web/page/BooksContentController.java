@@ -46,8 +46,11 @@ public class BooksContentController {
      @GetMapping ("/{book_id}/{page_number}")
     public String findBook(Model model, @PathVariable(name = "book_id") Long bookId, @PathVariable(name = "page_number") Long pageNumber ) {
 
+        String header = bookNamesService.findByIdAndUserId(bookId, userService.userId()).getName() + " _/" + pageNumber;
+         model.addAttribute( "header", header);
         List<Word> word = translationService.getTranslationPairs( bookContentService.findByBookIdAndPageNumber(bookId, pageNumber).getContent()); //1 лонг
-        model.addAttribute( "words", word); // атрибуты которые передаются в хтмл
+
+         model.addAttribute( "words", word); // атрибуты которые передаются в хтмл
         return "books_content_page" ;
     }
 

@@ -20,10 +20,37 @@ public class LearnedWordsService {
     private InternalDictionary internalDictionary;
     @Autowired
     private UserService userService;
+    @Autowired
+    DictionaryService dictionaryService;
 
 
-    public LearnedWordEntity save(LearnedWordEntity entity) {
-        return repository.save(entity);
+    public String delete(String learnedWord){
+        Long id = internalDictionary.findByEnglish(learnedWord).get().getId();
+        if (isLearned(learnedWord)){
+            repository.delete(repository.findByUserIdAndWordId(userService.userId(),internalDictionary.findByEnglish(learnedWord).get().getId()).get());
+            return "Word "+learnedWord+" is deleted";
+        } else {
+            return "Word is not learned";
+        }
+    }
+
+    public String save(String learnedWord) {
+
+        Long id = internalDictionary.findByEnglish(learnedWord).get().getId();
+        if (!isLearned(learnedWord)){
+            LearnedWordEntity learnedWordEntity = new LearnedWordEntity();
+            dictionaryService.getRussianTranslation(learnedWord); //добавляем слово в словарь, так как его может не быть
+            learnedWordEntity.setUserId(userService.userId());
+            learnedWordEntity.setWordId(id);
+            repository.save(learnedWordEntity);
+            return "Word "+learnedWord+" is added";
+
+        }else {
+            return "Word is learned already";
+        }
+
+
+
     }
 
     public LearnedWordEntity get(Long id) {
@@ -32,9 +59,10 @@ public class LearnedWordsService {
     }
     public List<LearnedWordEntity> findByUserId(Long userId) {
         return repository.findByUserId(userId);
-    }
+    }//
 
     public Boolean isLearned(String word){
+        word = word.toLowerCase().replaceAll( "[^a-zA-Z'’]", "");
         Optional<InternalDictionaryEntity> byEnglish = internalDictionary.findByEnglish(word);
         if (byEnglish.isPresent()){
             return repository.findByUserIdAndWordId(userService.userId(), (byEnglish.get().getId())).isPresent();

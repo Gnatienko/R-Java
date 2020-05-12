@@ -1,6 +1,9 @@
 package com.gnatienko.reader.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -18,6 +21,38 @@ public class UserEntity {
 
     @Column(name = "password")
     private String password;
+
+
+    @Column(nullable=false, unique=true)
+    @NotEmpty
+    @Email(message="{errors.invalid_email}")
+    private String email;
+
+
+
+
+    @ManyToMany(fetch=FetchType.EAGER, cascade=CascadeType.MERGE)
+    @JoinTable(
+            name="user_role",
+            joinColumns={@JoinColumn(name="USER_ID", referencedColumnName="ID")},
+            inverseJoinColumns={@JoinColumn(name="ROLE_ID", referencedColumnName="ID")})
+    private List<RoleEntity> roles;
+
+    public List<RoleEntity> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<RoleEntity> roles) {
+        this.roles = roles;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public Long getId() {
         return id;

@@ -15,7 +15,7 @@ import java.util.List;
 @CrossOrigin(origins = "*", allowedHeaders = "*")//localhost:3000~*
 @RestController
 @RequestMapping("/api/test")
-public class TestController {
+public class ContentAPIController {
 
     @Autowired
     private TranslationServiceImpl translationService;
@@ -44,7 +44,4 @@ public class TestController {
         System.out.println(bookContentEntity.getContent().toString());
         return ResponseEntity.ok(bookContentEntity);
     }
-
-
-
 }

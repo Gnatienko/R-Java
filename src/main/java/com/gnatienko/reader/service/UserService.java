@@ -25,6 +25,16 @@ public class UserService implements UserDetailsService
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    public String delete (Long userId){
+        if(repository.findById(userId).isPresent()){
+        repository.delete(repository.findById(userId).get());
+        return "User is deleted";
+        }
+        else {
+            return "User is not exist";
+        }
+    }
+
     public UserEntity save(UserEntity entity) {
         entity.setPassword(passwordEncoder.encode(entity.getPassword()));
         return repository.save(entity);

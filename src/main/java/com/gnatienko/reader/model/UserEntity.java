@@ -28,14 +28,12 @@ public class UserEntity {
     @Email(message="{errors.invalid_email}")
     private String email;
 
-
-
-
     @ManyToMany(fetch=FetchType.EAGER, cascade=CascadeType.MERGE)
     @JoinTable(
             name="user_role",
             joinColumns={@JoinColumn(name="USER_ID", referencedColumnName="ID")},
             inverseJoinColumns={@JoinColumn(name="ROLE_ID", referencedColumnName="ID")})
+
     private List<RoleEntity> roles;
 
     public List<RoleEntity> getRoles() {
